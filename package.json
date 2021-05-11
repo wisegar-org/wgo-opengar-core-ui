@@ -1,5 +1,5 @@
 {
-  "name": "wgo-opengar-core-ui",
+  "name": "@wisegar-org/wgo-opengar-core-ui",
   "version": "0.0.1-build.1",
   "description": "",
   "main": "build/index.js",
