@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "tests"],
+  "ext": ".ts,.tsx,.js,jsx",
+  "ignore": [],
+  "exec": "npx rimraf build && tsc"
+}
