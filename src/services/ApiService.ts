@@ -7,8 +7,12 @@ import { Agent } from 'https';
 
 export interface IApiServiceOptions {
   onTokenRefresh: (headers: any) => void;
+  /**
+   * @deprecated
+   */
   onNotAuthorizedErrorHandler: (message: any) => void;
   onGenericErrorHandler: (message: any) => void;
+  onNetworkErrorHandler: (message: any) => void;
   onGetAuthToken: () => string;
   onGetBaseUrl: () => string;
 }
@@ -71,6 +75,7 @@ export class ApiService {
 
       if (networkError) {
         console.log(`[Network error]: ${networkError}`);
+        options.onNetworkErrorHandler(networkError);
       }
     });
 
