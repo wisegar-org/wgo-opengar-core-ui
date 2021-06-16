@@ -2,7 +2,7 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloLink, from } from 'apollo-link';
-import { IApiSettings } from '../shared/interfaces/IApiSettings';
+import { IApiSettings } from '@wisegar-org/wgo-opengar-shared';
 
 /**
  * @deprecated Please use ApiService instead

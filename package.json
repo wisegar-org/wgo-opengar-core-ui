@@ -42,5 +42,7 @@
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@wisegar-org/wgo-opengar-shared": "0.0.1-build.8"
+  }
 }
