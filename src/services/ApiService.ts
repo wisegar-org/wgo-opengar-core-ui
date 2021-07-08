@@ -1,5 +1,5 @@
-import { ApolloClient, ApolloQueryResult, MutationOptions, OperationVariables, QueryOptions } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
+import { ApolloClient } from 'apollo-client';
+import { createUploadLink } from 'apollo-upload-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloLink, from } from 'apollo-link';
 import { onError } from 'apollo-link-error';
@@ -46,7 +46,7 @@ export class ApiService {
       return forward(operation);
     });
 
-    const httpLink = new HttpLink({
+    const httpLink = createUploadLink({
       uri: options.onGetBaseUrl(),
       fetchOptions: {
         agent: new Agent({ rejectUnauthorized: false }),
