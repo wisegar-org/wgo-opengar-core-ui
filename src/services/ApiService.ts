@@ -7,13 +7,10 @@ import { Agent } from 'https';
 
 export interface IApiServiceOptions {
   onTokenRefresh: (headers: any) => void;
-  /**
-   * @deprecated
-   */
-  onNotAuthorizedErrorHandler: (message: any) => void;
   onGenericErrorHandler: (message: any) => void;
   onNetworkErrorHandler: (message: any) => void;
   onGetAuthToken: () => string;
+  onHeadersSetup: (headers: any) => void;
   onGetBaseUrl: () => string;
 }
 export class ApiService {
@@ -38,11 +35,17 @@ export class ApiService {
 
   private getApolloClientOptions(options: IApiServiceOptions) {
     const authMiddleware = new ApolloLink((operation: any, forward: any) => {
-      operation.setContext({
-        headers: {
-          authorization: options.onGetAuthToken(),
-        },
-      });
+      const headers: any = {};
+      if (options.onGetAuthToken) {
+        headers.authorization = options.onGetAuthToken();
+      }
+      if (options.onHeadersSetup) {
+        options.onHeadersSetup(headers);
+      }
+      const context = {
+        headers: headers,
+      };
+      operation.setContext(context);
       return forward(operation);
     });
 
@@ -59,7 +62,7 @@ export class ApiService {
         const {
           response: { headers },
         } = context;
-        console.log('Response apollo link logger: ', response);
+        console.info('Response apollo link logger: ', response);
         options.onTokenRefresh(headers);
 
         return response;
@@ -69,7 +72,6 @@ export class ApiService {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) => {
           options.onGenericErrorHandler(message);
-          options.onNotAuthorizedErrorHandler(message);
         });
       }
 
