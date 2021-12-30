@@ -1,4 +1,4 @@
-import { ObjExt } from '@wisegar-org/wgo-opengar-shared';
+import ObjExt from '@wisegar-org/wgo-opengar-shared';
 
 const DbName = 'WG_App_DB';
 const ObjStoreName = 'WG_App_DBObjectStore';
