@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "build": "npx rimraf build && tsc",
-    "publicate": "npx rimraf build && tsc && npm publish",
+    "promote": "npm run build && npm version prerelease && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -45,6 +45,7 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "@wisegar-org/wgo-object-extensions": "0.0.1-build.7",
     "@wisegar-org/wgo-opengar-shared": "0.0.1-build.26"
   }
 }
