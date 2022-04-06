@@ -45,6 +45,6 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
-    "@wisegar-org/wgo-opengar-shared": "0.0.1-build.24"
+    "@wisegar-org/wgo-opengar-shared": "0.0.1-build.26"
   }
 }
