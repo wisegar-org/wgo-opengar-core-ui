@@ -47,5 +47,10 @@
   "dependencies": {
     "@wisegar-org/wgo-object-extensions": "0.0.1-build.7",
     "@wisegar-org/wgo-opengar-shared": "0.0.1-build.26"
-  }
+  },
+  "files": [
+    "build",
+    ".npmrc",
+    "README.md"
+  ]
 }
