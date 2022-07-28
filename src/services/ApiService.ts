@@ -63,7 +63,7 @@ export class ApiService {
           response: { headers },
         } = context;
         console.info('Response apollo link logger: ', response);
-        options.onTokenRefresh(headers);
+        options.onTokenRefresh(context);
 
         return response;
       });
