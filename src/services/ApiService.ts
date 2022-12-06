@@ -8,6 +8,7 @@ import { Agent } from 'https';
 export interface IApiServiceOptions {
   onTokenRefresh: (headers: any) => void;
   onGenericErrorHandler: (message: any) => void;
+  onGenericErrorHandlerIndex?: (message: any, index: number) => void;
   onNetworkErrorHandler: (message: any) => void;
   onGetAuthToken: () => string;
   onHeadersSetup: (headers: any) => void;
@@ -70,7 +71,8 @@ export class ApiService {
     });
     const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
-        graphQLErrors.map(({ message, locations, path }) => {
+        graphQLErrors.map(({ message, locations, path }, index) => {
+          if (options.onGenericErrorHandlerIndex) options.onGenericErrorHandlerIndex(message, index);
           options.onGenericErrorHandler(message);
         });
       }
@@ -95,5 +97,9 @@ export class ApiService {
       throw Error('Options param not found!');
     }
     return ApiService.instance;
+  }
+
+  public static isDefineInstance() {
+    return !!ApiService.instance;
   }
 }
